@@ -1,5 +1,7 @@
 //import { request } from 'http'; THIS CODE APPEARED OUT OF NOWHERE I DONT REMEMBER TYPING IT????????????????????????
 require('dotenv').config();
+
+const fs = require('fs');
 var Spotify = require('node-spotify-api');
 var Twitter = require('twitter');
 var keys = require("./keys");
@@ -111,5 +113,16 @@ if (args[0] === "movie-this") {
 	
 
 }
+if (args[0] === "do-what-it-says") {
+	fs.open('random.txt', 'r', (err, fd) => {
+		if (err) {
+			if (err.code === 'ENOENT') {
+				console.error('file does not exist');
+				return;
+			}
 
+			throw err;
+		}
+
+};
 
