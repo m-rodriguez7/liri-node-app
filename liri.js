@@ -45,11 +45,10 @@ var spotifyThis = function (song) {
 			};
 			var search = data.tracks.items;
 			for (i in search) {
-				console.log("ARTIST: " + search[i].artists[0].name)
-				console.log("TRACK: " + search[i].name) 
-				console.log("ALBUM: " + search[i].album.name)
-				console.log("LINK: " + search[i].external_urls.spotify)
-				return;
+				console.log("ARTIST: " + search[i].artists[0].name);
+				console.log("TRACK: " + search[i].name);
+				console.log("ALBUM: " + search[i].album.name);
+				console.log("LINK: " + search[i].external_urls.spotify);
 			};
 		});
 	} else {
@@ -59,11 +58,10 @@ var spotifyThis = function (song) {
 			};
 			var search = data.tracks.items;
 			for (i in search) {
-				console.log("ARTIST: " + search[i].artists[0].name)
-				console.log("TRACK: " + search[i].name) 
-				console.log("ALBUM: " + search[i].album.name)
-				console.log("LINK: " + search[i].external_urls.spotify)
-				return;
+				console.log("ARTIST: " + search[i].artists[0].name);
+				console.log("TRACK: " + search[i].name);
+				console.log("ALBUM: " + search[i].album.name);
+				console.log("LINK: " + search[i].external_urls.spotify);
 			};
 		});
 	};
