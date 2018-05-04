@@ -23,25 +23,21 @@ var movieData;
 
 
 // Twitter bot
-if (args[0] === "my-tweets") {
-	// show my last 20 tweets!
+var myTweets = function () {
 	client.get('statuses/user_timeline', limit = 20, function(error, tweets, response) {
-  		if (!error) {
-			// NEED TO TAKE IN "created at" and "text"
-			for (i in tweets) {
+		if (!error) {
+		  // NEED TO TAKE IN "created at" and "text"
+			for (i in tweets) { 
 				console.log(tweets[i].text+ " TWEETED on " + tweets[i].created_at);
 			};
-  		};
-
+		};
 	});
+}
+
+
 
 // Spotify bot
-} 
-
-if (args[0] === "spotify-this-song") {
-	song = args.slice(1).join(" ");
-	// console.log(song);
-	// spotify this "song"
+var spotifyThis = function (song) {
 	if (!song) {
 		spotify.search({type: 'track', query: "The Sign Ace of Base", limit: 5 }, function (err, data) {
 			if (err) {
@@ -71,12 +67,13 @@ if (args[0] === "spotify-this-song") {
 			};
 		});
 	};
-} 
+};
 
 
-if (args[0] === "movie-this") {
-	movie = args.slice(1).join(" ");
-	console.log(movie);
+// Movie bot
+var movieThis = function (movie) {
+	/* movie = args.slice(1).join(" ");
+	console.log(movie); */
 	if (!movie) {
 		request('http://www.omdbapi.com/?t=Mr.+Nobody&apikey=trilogy', function (error, response, body) {
 			if (error) {
@@ -109,20 +106,49 @@ if (args[0] === "movie-this") {
 			console.log('PLOT: ' + movieData.Plot);
 			console.log('ACTORS: ' + movieData.Actors);
 		});
-	};
-	
-
-}
-if (args[0] === "do-what-it-says") {
-	fs.open('random.txt', 'r', (err, fd) => {
-		if (err) {
-			if (err.code === 'ENOENT') {
-				console.error('file does not exist');
-				return;
-			}
-
-			throw err;
-		}
-
+	};	
 };
+
+if (args[0] === "my-tweets") {
+	// show my last 20 tweets!
+	myTweets();
+};
+
+if (args[0] === "movie-this") {
+	movie = args.slice(1).join(" ");
+	console.log(movie);
+	movieThis(movie);
+};
+
+if (args[0] === "spotify-this-song") {
+	song = args.slice(1).join(" ");
+	// console.log(song);
+	// spotify this "song"
+	spotifyThis(song);
+} 
+
+if (args[0] === "do-what-it-says") {
+	var array = fs.readFileSync('random.txt', 'utf8').split(',');
+
+	/* console.log(array); */
+		/* if (array[0] === "my-tweets") {
+			// show my last 20 tweets!
+			myTweets();
+		}; */
+		
+		/* if (array[0] === "movie-this") {
+			movie = array[1];
+			console.log(movie);
+			movieThis(movie);
+		}; */
+		
+		if (array[0] === "spotify-this-song") {
+			song = array[1]
+			// console.log(song);
+			// spotify this "song"
+			spotifyThis(song);
+		}
+};
+
+
 
